@@ -1,0 +1,33 @@
+<div class="pagination">
+    <ul class="pagination">
+        <li class="page-item" *ngFor="let page of getPages()" >
+            <a class="page-link" [class.active]="page === currentPage" (click)="clickPage(page)">
+                {{page}}
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+    <div class="col" *ngFor="let game of games">
+        <div class="card p-4 shadow-sm">
+            <div class="row">
+                <div class="col-md-6 img-vertical">
+                    <img class="img-fluid" src="https://res.cloudinary.com/dibrhmnxs/image/upload/c_fill,h_200,w_300/v1722122723/tiendaJuegosImages/games/{{game.cover}}" alt="No image">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">{{game.title}}</p>
+                        <p class="card-text">{{game.description}}</p>
+                        <p class="card-text">$ {{game.price}}</p>
+                        <hr/>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-primary" routerLink="/get-game/{{game.id}}" role="button" >View details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

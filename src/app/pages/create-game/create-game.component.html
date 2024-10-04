@@ -1,0 +1,31 @@
+<div class="card p-4">
+    <form [formGroup]="createGameForm" (ngSubmit)="createGame()" novalidate="">
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-6">
+                <input class="form-control" [ngClass]="createGameForm.get('title')?.invalid ? 'is-invalid' : '' " type="text" formControlName="title" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Cover</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="file" (change)="onFileChange($event)"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" formControlName="description" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-6">
+                <input class="form-control" [ngClass]="createGameForm.get('price')?.invalid ? 'is-invalid' : '' " type="number" formControlName="price" />
+            </div>
+        </div>
+        <button type="submit" [disabled]="createGameForm.invalid" class="btn btn-primary"><i class="fa-solid {{isUpdate ? 'fa-pencil' : 'fa-circle-plus'}} me-1"></i>{{ isUpdate ? 'Update' : 'Create' }}
+            Producto
+        </button>
+    </form>
+</div>

@@ -1,0 +1,77 @@
+<div class="card p-4">
+    <div class="mb-3 row">
+        <div class="col-sm-12" style="text-align: center;">
+            <h5>Confirm your purchase</h5>
+        </div>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form>
+                <div class="row mb-3">
+                    <label class="col-sm-6">Name</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6">Card number</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6">Expires in</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="date" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-6">CVC code</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn btn-primary col-sm-6" type="submit" data-bs-toggle="modal" data-bs-target="#purchase">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Confirm purchase
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 border">
+            <div class="card-body">
+                <div class="row">
+                    <h5>Game details</h5>
+                </div>
+                <div class="row">
+                    <h5>{{game.title}}</h5>
+                </div>
+                <div class="row">
+                    <p>{{game.description}}</p>
+                </div>
+                <div class="row">
+                    <p>price: {{game.price}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="purchase" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="purchaseModalLabel">Purchase game</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to buy this game?: {{game.title}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmPurchase()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="card p-4">
+    <div class="mb-3">
+        <button type="button" class="btn btn-success me-2" routerLink="/create-game">
+            <i class="fa-solid fa-plus me-1"></i>
+            Create
+        </button>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>title</th>
+                <th>cover</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let game of games">
+                <td><p>{{game.id}}</p></td>
+                <td><p>{{game.title}}</p></td>
+                <td><p>{{game.cover}}</p></td>
+                <td><p>{{game.description}}</p></td>
+                <td><p>{{game.price}}</p></td>
+                <td>
+                    <i *ngIf="game.activated" class="fa-solid fa-circle-check text-success me-2"></i>
+                    <i *ngIf="!game.activated" class="fa-solid fa-circle-xmark text-danger"></i>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning rounded-circle me-2" routerLink="/edit-game/{{game.id}}"><i class="fa-solid fa-pen"></i></button>
+                </td>
+                <td>
+                    <button *ngIf="!game.activated" type="button" class="btn btn-success rounded-circle me-2" (click)="activateGame(game.id)"><i class="fa-solid fa-check"></i></button>
+                    <button *ngIf="game.activated" type="button" class="btn btn-danger rounded-circle me-2" (click)="deleteGame(game.id)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

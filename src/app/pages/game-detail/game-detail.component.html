@@ -1,0 +1,40 @@
+<div>
+    <div *ngIf="game" class="card p-4">
+        <div class="row card-body">
+            <div class="col-6">
+                <img src="../../../assets/images/{{game.cover}}" class="card-img-top" alt="...">
+            </div>
+            <div class="col-6">
+                <h5 class="card-title">{{game.title}}</h5>
+                <p class="card-text">{{game.description}}</p>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <a routerLink="/purchase/{{game.id}}" class="btn btn-primary" role="button"><i class="fa fa-solid fa-dollar me-2"></i>Purchase</a>
+                    </div>
+                    <div class="col">
+                        <p style="color: rgb(11, 135, 9);">${{game.price}}</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Reviews</h3>
+                </div>
+                <div *ngIf="reviews.length">
+                    <div>
+                        <p>
+                            {{positiveReviews}} <i class="fa fa-thumbs-up text-success"></i>
+                            {{negativeReviews}} <i class="fa fa-thumbs-down text-danger"></i>
+                        </p>
+                    </div>
+                    <div class="p-2" [@fadeInOut]="visibility" [ngClass]="reviews[currentReviewIndex].recommended ? 'is-recommended border border-success rounded' : 'not-recommended border border-danger rounded'">
+                        <p>{{reviews[currentReviewIndex].User.name}} says:</p>
+                        <p>"{{reviews[currentReviewIndex].review}}" <i [ngClass]="reviews[currentReviewIndex].recommended ? 'fa fa-thumbs-up text-success' : 'fa fa-thumbs-down text-danger'"></i></p>
+                    </div>
+                </div>
+                <div *ngIf="!reviews.length">
+                    <p>{{game.title}} doesn`t have any review yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

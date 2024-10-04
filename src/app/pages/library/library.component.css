@@ -1,0 +1,17 @@
+.cover {
+    display: flex;
+    height: 200px;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background-image: url('../../../assets/images/gta.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.is-recommended {
+    background-color: #29c34d4a;
+}
+
+.not-recommended {
+    background-color: #ea35354a;
+}

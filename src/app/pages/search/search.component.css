@@ -1,0 +1,8 @@
+.pagination .page-link {
+    cursor: pointer;
+}
+
+.pagination .page-link.active {
+    background-color: #948888;
+    color: #ffffff;
+}

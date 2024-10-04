@@ -1,0 +1,4 @@
+<div *ngIf="alert" class="alert alert-{{alert.type}} mt-3 alert-dismissible d-block" >
+    {{alert.msg}}
+    <button type="button" class="btn-close" aria-label="Close" (click)="hide()" ></button>
+</div>

@@ -1,0 +1,42 @@
+<div class="card p-4">
+    <form [formGroup]="signUpForm" (ngSubmit)="signup()" novalidate="">
+        <div class="mb-3 row">
+            <label label class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-6 ">
+                <input class="form-control" [ngClass]="signUpForm.get('name')?.invalid ? 'is-invalid' : ''" type="text" formControlName="name" />
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">email</label>
+            <div class="col-sm-6">
+                <input class="form-control" [ngClass]="signUpForm.get('email')?.invalid ? 'is-invalid' : ''" type="email" formControlName="email"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">password</label>
+            <div class="col-sm-6">
+                <input class="form-control" [ngClass]="signUpForm.get('password')?.invalid ? 'is-invalid' : ''" type="password" formControlName="password"/>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">password confirm</label>
+            <div class="col-sm-6">
+                <input class="form-control" [ngClass]="signUpForm.get('passwordConfirm')?.invalid || !areSame() ? 'is-invalid' : '' " type="password" formControlName="passwordConfirm"/>
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="!areSame()">
+            Las contraseñas no coinciden
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label">photo</label>
+            <div class="col-sm-6">
+                <input type="file" (change)="onFileChange($event)"/>
+            </div>
+        </div>
+        <button class="btn btn-primary" [disabled]="signUpForm.invalid || !areSame()" type="submit">
+            <i class="fa-solid fa-circle-plus me-1"></i>
+            Signup
+        </button>
+        <app-alert [alert]="alert"></app-alert>
+    </form>
+</div>

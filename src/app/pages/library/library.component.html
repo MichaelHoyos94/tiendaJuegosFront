@@ -1,0 +1,81 @@
+<div>
+    <div *ngIf="!haveGames()" class="card p-4">
+        <p class="text-danger">You dont have any game yet.</p>
+    </div>
+    <div *ngIf="haveGames()" class="card p-4">
+        <div class="row p-4">
+            <div class="col-4">
+                <div *ngFor="let game of games" class="row">
+                    <button class="btn bg-transparent text-start" (click)="selectGame(game.id)">{{game.title}}</button>
+                </div>
+            </div>
+            <div class="col-8" *ngIf="selectedGame">
+                <div class="row">
+                    <div class="col-12 p-4 cover bg-image" [ngStyle]="{'background-image': 'url(' + getUrl() + ')'}">
+                        <div>
+                            <button type="button" class="btn btn-dark"><i class="fa fa-solid fa-download"></i> Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{selectedGame.title}}</h3>
+                        <p>{{selectedGame.description}}</p>
+                    </div>
+                </div>
+                <div *ngIf="!selectedGameReview" class="row">
+                    <p>Did you enjoy {{selectedGame.title}}? then make a <button type="button" class="btn btn-link p-0 mb-2" data-bs-toggle="modal" data-bs-target="#review">review</button></p>
+                </div>
+                <div *ngIf="selectedGameReview" class="row">
+                    <div class="p-2" [ngClass]="selectedGameReview.recommended ? 'is-recommended border border-success rounded' : 'not-recommended border border-danger rounded'">
+                        <p>you said:</p>
+                        <p>"{{selectedGameReview.review}}" <i [ngClass]="selectedGameReview.recommended ? 'fa fa-thumbs-up text-success' : 'fa fa-thumbs-down text-danger'"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="review" aria-labelledby="reviewModalLabel" aria-hidden="true" *ngIf="selectedGame">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="purchaseModalLabel">Review</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card p-4">
+                    <form [formGroup]="reviewForm" (ngSubmit)="makeReview()" novalidate="">
+                        <div class="mb-3 row">
+                            <label class="col col-form-label">What you think about {{selectedGame.title}}?</label>
+                            <div class="col">
+                                <input class="form-control" formControlName="review" type="text"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col col-form-label">Do you recommend {{selectedGame.title}}?</label>
+                            <div class="col form-check">
+                                <label class="m-2">
+                                    <input type="radio" formControlName="recommended" [value]="true" name="recommended"> Yes
+                                </label>
+                                <label class="m-2">
+                                    <input type="radio" formControlName="recommended" [value]="false" name="recommended"> No
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col">
+                                <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">
+                                    make review
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
