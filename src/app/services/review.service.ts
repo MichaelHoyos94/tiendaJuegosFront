@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MsgDto } from '../model/msg-dto';
 import { ReviewDto } from '../model/review-dto';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ReviewService {
   reviewRoute!:string;
   constructor(private http:HttpClient) { 
-    this.reviewRoute = `http://localhost:8081/api/v1/reviews`;
+    this.reviewRoute = `${environment.apiUrl}/reviews`;
   }
   /**
    * makeReview

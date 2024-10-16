@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { UserGetDTO } from '../model/user-get-dto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MsgDto } from '../model/msg-dto';
 import { UserDTO } from '../model/user-dto';
+import { environment } from 'src/enviroments/enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private userURL = "http://localhost:8081/api/v1/users"
+  private userURL = `${environment.apiUrl}/users`
 
   constructor(private http:HttpClient) { }
 

@@ -4,19 +4,22 @@ import { Observable } from 'rxjs';
 import { UserDTO } from '../model/user-dto';
 import { MsgDto } from '../model/msg-dto';
 import { SessionDTO } from '../model/session-dto';
+import { environment } from 'src/enviroments/enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8081/api/v1/auth";
+  authRoute!:string;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.authRoute = `${environment.apiUrl}/auth`;
+  }
 
   public signup(user:UserDTO):Observable<MsgDto>{
     return this.http.post<MsgDto>(
-      `${this.authURL}/signup`, user
+      `${this.authRoute}/signup`, user
     );
   }
 
@@ -25,7 +28,7 @@ export class AuthService {
    */
   public login(sesionDto:SessionDTO):Observable<MsgDto> {
     return this.http.post<MsgDto>(
-      `${this.authURL}/login`,
+      `${this.authRoute}/login`,
       sesionDto
     );
   }

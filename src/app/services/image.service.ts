@@ -1,14 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageService {
-  private url = 'http://localhost:8081/api/v1/upload';
 
-  constructor(private http:HttpClient) { }
+  imagesRoute!:string;
+
+  constructor(private http:HttpClient) {
+    this.imagesRoute = `${environment.apiUrl}/upload`;
+  }
 
   /**
    * uploadImage
@@ -19,7 +23,7 @@ export class ImageService {
     const headers = new HttpHeaders({
       'enctype': 'multipart/form-data'
     });
-    return this.http.post(`${this.url}Users`, formData, { headers });
+    return this.http.post(`${this.imagesRoute}Users`, formData, { headers });
   }
   /**
    * uploadImage
@@ -30,6 +34,6 @@ export class ImageService {
     const headers = new HttpHeaders({
       'enctype': 'multipart/form-data'
     });
-    return this.http.post(`${this.url}Games`, formData, { headers });
+    return this.http.post(`${this.imagesRoute}Games`, formData, { headers });
   }
 }

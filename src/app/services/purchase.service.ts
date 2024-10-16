@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MsgDto } from '../model/msg-dto';
+import { environment } from 'src/enviroments/enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { MsgDto } from '../model/msg-dto';
 export class PurchaseService {
   purchaseRoute!:string;
   constructor(private http:HttpClient) { 
-    this.purchaseRoute = "http://localhost:8081/api/v1/purchases"
+    this.purchaseRoute = `${environment.apiUrl}/purchases`
   }
   /**
    * confirmPurchase
