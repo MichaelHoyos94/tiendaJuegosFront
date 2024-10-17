@@ -11,11 +11,9 @@ import { environment } from 'src/enviroments/enviroment.prod';
 })
 export class AuthService {
 
-  authRoute!:string;
+  private authRoute = `${environment.apiUrl}/auth`;
 
-  constructor(private http:HttpClient) {
-    this.authRoute = `${environment.apiUrl}/auth`;
-  }
+  constructor(private http:HttpClient) { }
 
   public signup(user:UserDTO):Observable<MsgDto>{
     return this.http.post<MsgDto>(
