@@ -32,7 +32,7 @@ export class LibraryComponent implements OnInit{
    * getUrl
    */
   public getUrl():string {
-    return `../../../assets/images/${this.selectedGame?.cover}`;
+    return `https://res.cloudinary.com/dibrhmnxs/image/upload/c_fill,h_720,w_1280/v1722122723/tiendaJuegosImages/games/${this.selectedGame?.cover}`;
   }
   /**
    * haveGames
